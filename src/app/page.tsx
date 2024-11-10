@@ -1,23 +1,34 @@
+import { ProductType } from "@/types/ProductType";
 
+async function getProducts() {
+  try {
+    const response = await fetch('https://fakestoreapi.com/products');
+    if (!response.ok) {
+      throw new Error(`Failed to fetch products: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    // Handle the error gracefully, e.g., display an error message to the user
+    return []; // Return an empty array to prevent rendering issues
+  }
+}
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <div className="max-w-7xl mx-auto pt-8 px-8 xl:px-0">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 xl:gap-6">
-        <div className="bg-slate-200 p-4">
-          prod1
-        </div>
-        <div className="bg-slate-200 p-4">
-          prod1
-        </div>
-        <div className="bg-slate-200 p-4">
-          prod1
-        </div>
-        <div className="bg-slate-200 p-4">
-          prod1
-        </div>
+        {products.map((product: ProductType) => (
+          <div key={product.id} className="product-card">
+            {/* Add product information and styling here */}
+            <h2>{product.title}</h2>
+            {/* Add image, price, description, etc. as needed */}
+          </div>
+        ))}
       </div>
-
     </div>
   );
 }

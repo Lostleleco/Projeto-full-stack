@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { UserButton, SignInButton, SignOutButton } from "@clerk/nextjs";
+import { UserButton, SignInButton } from "@clerk/nextjs";
 
 function Navbar() {
     return (

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import clsx from "clsx";
+import { ClerkProvider } from "@clerk/nextjs";  // Corrigido para a versão client-side
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,13 +25,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={clsx("bg-slate-700", geistSans.variable, geistMono.variable, "antialiased")}>
-        <Navbar />
-        <main className="h-screen p-16">
-          {children}
-        </main>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={clsx("bg-slate-700", geistSans.variable, geistMono.variable, "antialiased")}>
+          <Navbar />
+          <main className="h-screen p-16">
+            {children}
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

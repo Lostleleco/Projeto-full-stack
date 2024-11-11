@@ -1,4 +1,5 @@
 import { ProductType } from "@/types/ProductType";
+import Product from "./components/Product";
 
 async function getProducts() {
   try {
@@ -22,11 +23,7 @@ export default async function Home() {
     <div className="max-w-7xl mx-auto pt-8 px-8 xl:px-0">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 xl:gap-6">
         {products.map((product: ProductType) => (
-          <div key={product.id} className="product-card">
-            {/* Add product information and styling here */}
-            <h2>{product.title}</h2>
-            {/* Add image, price, description, etc. as needed */}
-          </div>
+          <Product key={product.id} product={product} />
         ))}
       </div>
     </div>

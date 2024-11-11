@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { SignInButton, SignOutButton } from "@clerk/nextjs";
+
 import Link from "next/link";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { UserButton, SignInButton, SignOutButton } from "@clerk/nextjs";
 
 function Navbar() {
     return (
@@ -10,16 +12,16 @@ function Navbar() {
                     Next Store
                 </Link>
                 <div className="flex items-center gap-8">
-                    <SignInButton>
-                        <button className="text-white bg-teal-600 px-4 py-2 rounded-md">
-                            Fazer Login
-                        </button>
-                    </SignInButton>
-                    <SignOutButton>
-                        <button className="text-white bg-red-600 px-4 py-2 rounded-md">
-                            Sair
-                        </button>
-                    </SignOutButton>
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn>
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <button className="border rounded-md border-gray-400 px-3 py-2">
+                                Fazer Login
+                            </button>
+                        </SignInButton>
+                    </SignedOut>
                 </div>
             </nav>
         </>

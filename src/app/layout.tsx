@@ -5,7 +5,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";  // Corrigido para a versão client-side
-
+import { ptBR } from '@clerk/localizations'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={ptBR}>
       <html lang="en">
         <body className={clsx("bg-slate-700", geistSans.variable, geistMono.variable, "antialiased")}>
           <Navbar />

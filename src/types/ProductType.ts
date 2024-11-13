@@ -1,12 +1,12 @@
+import { ReactNode } from "react";
+
 export type ProductType = {
-    id: number;
-    title: string;
-    price: number     | null;
-    description: string | null;
-    category: string;
+    name: ReactNode;
+    id: string;
+    price: number | null;
+    quantity?: number | 1;
     image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
+    description: string | null;
+    currency?: string;
+
 };

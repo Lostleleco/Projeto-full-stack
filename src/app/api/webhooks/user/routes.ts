@@ -2,7 +2,6 @@ import prisma from '@/lib/prisma';
 import { headers } from 'next/headers';
 import { IncomingHttpHeaders } from 'http';
 import { NextResponse } from 'next/server';
-import { EmailAddress } from '@clerk/nextjs/server';
 import { Webhook, WebhookRequiredHeaders } from 'svix';
 
 const webhookSecret = process.env.WEBHOOK_SECRET || '';
@@ -33,9 +32,9 @@ async function handleRequest(request: Request) {
     const payload = await request.json();
     const headersList = headers();
     const heads = {
-        'svix-id': headersList.get('svix-id'),
-        'svix-timestamp': headersList.get('svix-timestamp'),
-        'svix-signature': headersList.get('svix-signature'),
+        'svix-id': (await headersList).get('svix-id'),
+        'svix-timestamp': (await headersList).get('svix-timestamp'),
+        'svix-signature': (await headersList).get('svix-signature'),
     };
 
     const wh = new Webhook(webhookSecret);

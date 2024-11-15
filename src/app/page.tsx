@@ -5,7 +5,7 @@ import Product from "./components/Product";
 // Função para obter os produtos
 async function getProducts(): Promise<ProductType[]> {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2020-08-27', // Defina a versão desejada aqui
+   
   });
 
   // Listar os produtos

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider localization={ptBR}>
-      <html lang="en">
+      <html lang="pt-BR">
         <body className={clsx("bg-slate-700", geistSans.variable, geistMono.variable, "antialiased")}>
           <Navbar />
           <main className="h-screen p-16">

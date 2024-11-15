@@ -5,9 +5,8 @@ import Product from "./components/Product";
 // Função para obter os produtos
 async function getProducts(): Promise<ProductType[]> {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-     // Defina a versão desejada aqui
+    apiVersion: '2020-08-27', // Defina a versão desejada aqui
   });
-
 
   // Listar os produtos
   const products = await stripe.products.list();
@@ -18,9 +17,16 @@ async function getProducts(): Promise<ProductType[]> {
       const price = await stripe.prices.list({
         product: product.id,
       });
+
+      // Formatar o preço com 2 casas decimais e como moeda
+      const formattedPrice = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(price.data[0].unit_amount! / 100); // Converte de centavos para reais
+
       return {
         id: product.id,
-        price: price.data[0].unit_amount,
+        price: formattedPrice, // Preço agora é uma string formatada
         name: product.name,
         image: product.images[0],
         description: product.description,

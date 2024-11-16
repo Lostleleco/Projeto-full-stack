@@ -1,8 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ProductType } from "../types/ProductType";
+import { ProductType } from "./types/ProductType";
 
 type CartState = {
+    onCheckout: string;
+    setCheckout(arg0: string): unknown;
     cart: ProductType[];
     isOpen: boolean;
     toggleCart: () => void;

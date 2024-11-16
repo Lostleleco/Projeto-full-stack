@@ -1,7 +1,8 @@
+// src/middleware.js ou src/middleware.ts
+
 import { clerkMiddleware } from '@clerk/nextjs/server';
 
-export default clerkMiddleware(
-    {
-        publicRoutes: ['/'],
-    }
-);
+// Exemplo de um matcher válido para API e Dashboard
+export default clerkMiddleware({
+  matcher: ['/api/:path*', '/dashboard/:path*'],
+});
